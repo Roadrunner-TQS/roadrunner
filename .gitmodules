@@ -1,0 +1,9 @@
+[submodule "roadrunner-backend"]
+	path = roadrunner-backend
+	url = git@github.com:Roadrunner-TQS/roadrunner-backend.git
+[submodule "shop-frontend"]
+	path = shop-frontend
+	url = git@github.com:Roadrunner-TQS/shop-frontend.git
+[submodule "shop-backend"]
+	path = shop-backend
+	url = git@github.com:Roadrunner-TQS/shop-backend.git
