@@ -59,8 +59,10 @@ services:
       - .env
     ports:
       - "${SHOP_FE_PORT}:${SHOP_FE_DOCKER_PORT}"
+    depends_on:
+      - shop-backend
     environment:
-      VITE_API_URL: 'http://localhost:${SHOP_SB_PORT}'
+      - VITE_API_URL=${SHOP_API_URL}
 
   roadrunner-frontend:
     build:
@@ -71,8 +73,10 @@ services:
       - .env
     ports:
       - "${RR_FE_PORT}:${RR_FE_DOCKER_PORT}"
+    depends_on:
+      - roadrunner-backend
     environment:
-      VITE_API_URL: 'http://localhost:${RR_SB_PORT}'
+      - VITE_API_URL=${RR_API_URL}
 
   roadrunner-backend:
     depends_on:
