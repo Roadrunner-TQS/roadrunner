@@ -7,3 +7,6 @@
 [submodule "shop-backend"]
 	path = shop-backend
 	url = git@github.com:Roadrunner-TQS/shop-backend.git
+[submodule "roadrunner-frontend"]
+	path = roadrunner-frontend
+	url = git@github.com:Roadrunner-TQS/roadrunner-frontend.git
