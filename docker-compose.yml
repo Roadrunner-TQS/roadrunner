@@ -62,6 +62,18 @@ services:
     environment:
       VITE_API_URL: 'http://localhost:${SHOP_SB_PORT}'
 
+  roadrunner-frontend:
+    build:
+      context: ./roadrunner-frontend
+      dockerfile: Dockerfile
+    restart: on-failure
+    env_file:
+      - .env
+    ports:
+      - "${RR_FE_PORT}:${RR_FE_DOCKER_PORT}"
+    environment:
+      VITE_API_URL: 'http://localhost:${RR_SB_PORT}'
+
   roadrunner-backend:
     depends_on:
       - roadrunner-database
