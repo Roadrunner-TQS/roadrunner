@@ -3,7 +3,7 @@ name: tqs
 services:
   shop-database:
     image: mysql:5.7
-    restart: on-failure 
+    restart: on-failure
     env_file:
       - .env
     environment:
@@ -18,16 +18,16 @@ services:
 
   roadrunner-database:
     image: mysql:5.7
-    restart: on-failure 
+    restart: on-failure
     env_file:
       - .env
     environment:
-        MYSQL_DATABASE: ${RR_DB_NAME}
-        MYSQL_USER: ${RR_DB_USER}
-        MYSQL_PASSWORD: ${RR_DB_PASSWORD}
-        MYSQL_ROOT_PASSWORD: ${RR_DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${RR_DB_NAME}
+      MYSQL_USER: ${RR_DB_USER}
+      MYSQL_PASSWORD: ${RR_DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${RR_DB_ROOT_PASSWORD}
     ports:
-        - "${RR_DB_PORT}:${RR_DB_DOCKER_PORT}"
+      - "${RR_DB_PORT}:${RR_DB_DOCKER_PORT}"
     volumes:
       - db_rr:/var/lib/mysql
 
@@ -59,10 +59,8 @@ services:
       - .env
     ports:
       - "${SHOP_FE_PORT}:${SHOP_FE_DOCKER_PORT}"
-    depends_on:
-      - shop-backend
     environment:
-      - VITE_API_URL=${SHOP_API_URL}
+      VITE_API_URL: '${SHOP_API_URL}'
 
   roadrunner-frontend:
     build:
@@ -73,23 +71,21 @@ services:
       - .env
     ports:
       - "${RR_FE_PORT}:${RR_FE_DOCKER_PORT}"
-    depends_on:
-      - roadrunner-backend
     environment:
-      - VITE_API_URL=${RR_API_URL}
+      VITE_API_URL: '${RR_API_URL}'
 
   roadrunner-backend:
     depends_on:
       - roadrunner-database
     build:
-        context: ./roadrunner-backend
-        dockerfile: Dockerfile
+      context: ./roadrunner-backend
+      dockerfile: Dockerfile
     restart: on-failure
     env_file:
       - .env
 
     ports:
-        - "${RR_SB_PORT}:${RR_SB_DOCKER_PORT}"
+      - "${RR_SB_PORT}:${RR_SB_DOCKER_PORT}"
     environment:
       SPRING_APPLICATION_JSON: '{
               "spring.datasource.url"  : "jdbc:mysql://roadrunner-database:${RR_DB_DOCKER_PORT}/${RR_DB_NAME}?useSSL=false",
