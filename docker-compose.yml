@@ -77,9 +77,10 @@ services:
   roadrunner-backend:
     depends_on:
       - roadrunner-database
-    build:
-      context: ./roadrunner-backend
-      dockerfile: Dockerfile
+    #build:
+    #   context: ./roadrunner-backend
+    #   dockerfile: Dockerfile
+    image: localhost:5000/rr-backend
     restart: on-failure
     env_file:
       - .env
