@@ -55,3 +55,9 @@
 This is not visible to the public, but you can see a screenshot of it 
 
 ![Grafana Dashboard](grafana.png)
+
+# Performance testing
+
+To ensure that our application is able to handle a large number of requests, we used [JMeter](https://jmeter.apache.org/) to perform load testing.
+
+![Performance Testing](performance.png)
